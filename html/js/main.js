@@ -43,6 +43,33 @@ $(document).ready(function() {
         });
     }, 3000);
 
+    // 메인페이지
+    var mouseX, mouseY;
+    var ww = window.innerWidth;
+    var wh = window.innerHeight;
+    var traX, traY;
+    
+    document.addEventListener('mousemove', function(e) {
+        mouseX = e.pageX;
+        mouseY = e.pageY;
+        traX = ((4 * mouseX) / 350) + 10;
+        traY = ((4 * mouseY) / 350) + 20;
+    
+        var elements = document.querySelectorAll('.title, .title.lg, .line');
+        elements.forEach(function(element) {
+            if (element.classList.contains('line')) {
+                element.style.backgroundPosition = `center, ${traX}% ${traY}%`;
+            } else {
+                element.style.backgroundPosition = traX + "% " + traY + "%";
+            }
+        });
+    
+        var titleSpans = document.querySelectorAll('.title span, .title.lg span');
+        titleSpans.forEach(function(span) {
+            span.style.backgroundPosition = traY + "% " + traX + "%";
+        });
+    });
+
     // fullPage 설정
     const progressBar = document.querySelector('.progress-bar-one');
 
@@ -87,12 +114,7 @@ $(document).ready(function() {
             nextEl: ".swiper-button-next",
             prevEl: ".swiper-button-prev",
         },
-        a11y: {
-            enabled: true,
-            prevSlideMessage: '이전 슬라이드',
-            nextSlideMessage: '다음 슬라이드',   
-            slideLabelMessage: '총 {{slidesLength}}장의 슬라이드 중 {{index}}번 슬라이드 입니다.',
-        },
+        nested: true
     });
 
     // 공통 Swiper 옵션

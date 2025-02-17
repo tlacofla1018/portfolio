@@ -9,23 +9,3 @@ body {
     width: 100%;
     height: 100%;
 }
-
-.section {
-    font-size: 3vw;
-}
-.swiper-container {
-    width: 100%;
-    height: 100%;
-}
-.swiper-slide {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 100%;
-}
-.sec4{
-    height: 200vh; 
-    background-color: #fff;
-}

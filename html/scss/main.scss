@@ -22,6 +22,9 @@ article::selection {
     color: #ffffff;
 }
 body {
+    .fp-tableCell {
+        padding-top: 50px;
+    }
     .page_title {
         margin-bottom: 40px;
         font-size: 2rem;
@@ -77,6 +80,9 @@ body {
             transform: rotate(45deg);
         }
     }
+    .section {
+        background-color: #fff;
+    }
 
     #header {
         position: fixed;
@@ -85,7 +91,9 @@ body {
         z-index: 60;
         width: 100%;
         height: 50px;
-        background-color: #666;
+        background: 0;
+        border-bottom: solid 1px #ededed;
+        backdrop-filter: blur(10px); /* 블러 효과 */
         .progress-bar-one {
             width: var(--progress-width, 0%); /* 기본값 0%로 설정 */
             height: 5px;
@@ -96,10 +104,24 @@ body {
             z-index: 10000;
             transition: width 0.3s ease;
         }
+        h1 {
+            font-size: 1rem;
+            font-weight: 500;
+            a {
+                color: #202020;
+            }
+        }
         .navbar-nav {
             li:first-child {
                 visibility: hidden;
                 opacity: 0;
+            }
+            .active.nav-link {
+                color: #4748b1;
+            }
+            .nav-link {
+                font-size: 0.875rem;
+                color: #202020;
             }
         }
     }
@@ -288,6 +310,99 @@ body {
         }
     }
 
+    // 팀프로젝트&CMS
+    #grid_section {
+        // 격자구조
+        .btn_outline {
+            width: 100px;
+            text-align: center;
+            font-size: 0.7rem;
+            padding: 8px 0;
+            border: 1px solid #ccc;
+            transition: all .2s ease-in-out;
+            cursor: pointer;
+            a {
+                color: #4748b1;
+            }
+            &:hover {
+                border: 0;
+                background: #4748b1;
+                a {
+                    color: #fff;
+                }
+            }
+        }
+
+        &:after {
+            content: "";
+            display: block;
+            clear: both;
+        }
+
+        article{
+            display: flex;
+            height: 50%;
+            .project_preview {
+                width: 50%;
+                height: 100%;
+            }
+            &:nth-child(1){
+                display: flex;
+                .project_preview {
+                    background: url('/img/universe_ent.jpg') no-repeat top center / cover;
+                }
+            }
+            &:nth-child(2){
+                display: flex;
+                flex-direction: row-reverse;
+                .project_preview {
+                    background: url('/img/hello_rental.jpg') no-repeat top center / cover;
+                    border: solid 1px #ededed;
+                }
+            }
+            .project_info {
+                width: 50%;
+                height: 100%;
+                padding: 0 40px;
+                h3 {
+                    padding: 80px 0 20px;
+                    font-size: 1.125rem;
+                    font-weight: 500;
+                    .page_title {
+                        margin: 0;
+                    }
+                }
+                p {
+                    text-align: left;
+                    color: #666;
+                }
+                .btn_box {
+                    bottom: 80px;
+                    left: 40px;
+                    gap: 8px;
+                }
+            }
+        }
+    }
+
+    // 리뉴얼 페이지
+    #renewal_page {
+        background-color: transparent;
+        ul {
+            gap: 20px;
+            li {
+                width: 32%;
+                padding: 10px;
+                background-color: #FFF;
+                border: solid 2px #F8F8FF;
+            }
+        }
+    }
+
+    #main_item {
+        background-color: #F8F8FF;
+    }
+
     #design {
         .container {
             height: 80%;
@@ -339,9 +454,6 @@ body {
         .container.inner {
             position: relative;
             height: 80%;
-            p {
-                font-size: 1rem;
-            }
             .mail_address {
                 color: #202020;
                 font-size: 5rem;
@@ -373,6 +485,17 @@ body {
         }
     }
 
+    .background_text {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        z-index: -1;
+        width: 100%;
+        transform: translate(-50%, -50%);
+        font-size: 24px;
+        text-align: center;
+        color: #ededed;
+    }
     #q_btn {
         position: fixed;
         bottom: 10%;
