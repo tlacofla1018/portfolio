@@ -58,7 +58,7 @@ html.fp-enabled,
     position: absolute;
     z-index: 4;
     top: 50%;
-    cursor: pointer;
+    /* cursor: pointer; */
     width: 0;
     height: 0;
     border-style: solid;
@@ -146,7 +146,7 @@ html.fp-enabled,
     z-index: 1;
     width: 100%;
     height: 100%;
-    cursor: pointer;
+    /* cursor: pointer; */
     text-decoration: none;
 }
 #fp-nav ul li a.active span,
@@ -193,7 +193,7 @@ html.fp-enabled,
     display: block;
     opacity: 0;
     width: 0;
-    cursor: pointer;
+    /* cursor: pointer; */
 }
 #fp-nav ul li:hover .fp-tooltip,
 #fp-nav.fp-show-active a.active + .fp-tooltip {

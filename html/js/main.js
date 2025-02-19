@@ -43,7 +43,7 @@ $(document).ready(function() {
         });
     }, 3000);
 
-    // 메인페이지
+    // 마우스 이벤트 및 배경 위치 설정
     var mouseX, mouseY;
     var ww = window.innerWidth;
     var wh = window.innerHeight;
@@ -104,25 +104,22 @@ $(document).ready(function() {
 
     // Swiper 초기화
     var swiper = new Swiper(".product_detail_swiper_box", {
-        slidesPerView : "auto",
-        spaceBetween : 20,
-        slidesPerGroup : 1,
-        pagination: {
-            el: ".swiper-pagination",
-        },
+        slidesPerView: 4,  // 한 번에 4개의 슬라이드 표시
+        spaceBetween: 20,  // 슬라이드 간 간격
+        slidesPerGroup: 1,  // 한 번에 한 그룹씩 이동
         navigation: {
-            nextEl: ".swiper-button-next",
-            prevEl: ".swiper-button-prev",
+            nextEl: "#design .swiper-button-next",  // 다음 버튼
+            prevEl: "#design .swiper-button-prev",  // 이전 버튼
         },
-        nested: true
+        nested: true,  // 중첩 슬라이드
     });
 
     // 공통 Swiper 옵션
     const swiperCommonOptions = {
-        direction: "vertical",
-        slidesPerView: "auto",
-        freeMode: true,
-        mousewheel: true,
+        direction: "vertical", // 수직 방향
+        slidesPerView: "auto", // 자동 크기 계산 (이 부분은 필요에 따라 변경 가능)
+        freeMode: true, // 자유 모드
+        mousewheel: true, // 마우스 휠 기능
     };
 
     // Swiper 초기화 함수
@@ -132,16 +129,17 @@ $(document).ready(function() {
             scrollbar: {
                 el: scrollbarSelector,
                 draggable: true,
+                hide: true,
             },
         });
     }
 
     // 각 Swiper 인스턴스 초기화
-    initializeSwiper(".product_detail_swiper_01", ".swiper-scrollbar-01");
-    initializeSwiper(".product_detail_swiper_02", ".swiper-scrollbar-02");
-    initializeSwiper(".product_detail_swiper_03", ".swiper-scrollbar-03");
-    initializeSwiper(".product_detail_swiper_04", ".swiper-scrollbar-04");
-    initializeSwiper(".product_detail_swiper_05", ".swiper-scrollbar-05");
+    initializeSwiper(".product_detail_swiper_01", ".product_detail_swiper_01 .swiper-scrollbar");
+    initializeSwiper(".product_detail_swiper_02", ".product_detail_swiper_02 .swiper-scrollbar");
+    initializeSwiper(".product_detail_swiper_03", ".product_detail_swiper_03 .swiper-scrollbar");
+    initializeSwiper(".product_detail_swiper_04", ".product_detail_swiper_04 .swiper-scrollbar");
+    initializeSwiper(".product_detail_swiper_05", ".product_detail_swiper_05 .swiper-scrollbar");
 
     // fullPage.js 스크롤 제어 함수
     function disableFullPageScrolling() {
@@ -156,55 +154,57 @@ $(document).ready(function() {
 
     let isDragging = false;
     let isInsideSwiper = false;
-
-    // Swiper에 들어가면 fullPage.js 차단
-    $(".swiper-wrapper").on("mouseenter touchstart", function() {
+    
+    // Swiper 영역을 기준으로 설정
+    var swiperArea = $('.sec6 .swiper');  
+    
+    // Swiper 영역에 마우스가 들어오거나 터치가 시작되면 fullPage 비활성화
+    swiperArea.on('mouseenter touchstart', function() {
         isInsideSwiper = true;
-        disableFullPageScrolling();
-    });
-
-    // Swiper에서 나가면 fullPage.js 활성화
-    $(".swiper-wrapper").on("mouseleave touchend", function() {
         if (!isDragging) {
-            isInsideSwiper = false;
+            disableFullPageScrolling();
+        }
+    });
+    
+    // Swiper 영역을 벗어나거나 터치가 끝나면 fullPage 활성화
+    swiperArea.on('mouseleave touchend', function() {
+        isInsideSwiper = false;
+        if (!isDragging) {
             enableFullPageScrolling();
         }
     });
-
-    // Swiper에서 드래그 시작 감지
-    $(".swiper-wrapper").on("mousedown touchstart", function() {
+    
+    // Swiper 영역에서 드래그 시작
+    swiperArea.on('mousedown touchstart', function() {
         isDragging = true;
+        disableFullPageScrolling();
     });
-
-    // Swiper에서 드래그 끝 감지
-    $(document).on("mouseup touchend", function() {
+    
+    // Swiper 영역에서 드래그 끝
+    $(document).on('mouseup touchend', function(event) {
         isDragging = false;
+    
+        // Swiper 영역 외부에서 드래그가 끝난 경우
         if (!isInsideSwiper) {
             enableFullPageScrolling();
         }
     });
 
-    // 마우스 휠 이벤트 감지 (Swiper와 fullPage.js 자동 전환)
+    // 휠 이벤트: Swiper 영역 내에서만 Swiper 스크롤, 외부에서는 fullPage 스크롤
     $(document).on("wheel", function(event) {
-        let insideSwiper = $(event.target).closest(".swiper-wrapper").length > 0;
+        let insideSwiper = $(event.target).closest(".sec6 .swiper").length > 0;
 
         if (insideSwiper) {
-            disableFullPageScrolling();
+            disableFullPageScrolling();  // Swiper 영역에서만 fullPage 비활성화
         } else {
-            enableFullPageScrolling();
+            enableFullPageScrolling();  // 그 외에는 fullPage 활성화
         }
     });
 });
 
-// // 사용할 앱의 JavaScript 키를 설정해 주세요.
-// Kakao.init('40e7f9acecd585c7514703a52c49f034');
-// // 채널 1:1 채팅 버튼을 생성합니다.
-// Kakao.Channel.createChatButton({
-// container: '#kakao-talk-channel-chat-button',
-// channelPublicId: '_uqbbn',
-// title: 'consult',
-// size: 'large',
-// color: 'yellow',
-// shape: 'mobile',
-// supportMultipleDensities: true,
-// });
+Kakao.init('40e7f9acecd585c7514703a52c49f034'); // 사용할 앱의 JavaScript키를 입력해 주세요.
+function kakaoChatStart() {
+    Kakao.Channel.chat({
+        channelPublicId: '_uqbbn' // 카카오톡 채널 홈 URL에 명시된 ID를 입력합니다.(1단계에서 복사한 값)
+    });
+}

@@ -261,7 +261,7 @@
   height: var(--swiper-navigation-size);
   margin-top: calc(0px - (var(--swiper-navigation-size) / 2));
   z-index: 10;
-  cursor: pointer;
+  /* cursor: pointer; */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -270,13 +270,13 @@
 .swiper-button-prev.swiper-button-disabled,
 .swiper-button-next.swiper-button-disabled {
   opacity: 0.35;
-  cursor: auto;
+  /* cursor: auto; */
   pointer-events: none;
 }
 .swiper-button-prev.swiper-button-hidden,
 .swiper-button-next.swiper-button-hidden {
   opacity: 0;
-  cursor: auto;
+  /* cursor: auto; */
   pointer-events: none;
 }
 .swiper-navigation-disabled .swiper-button-prev,
@@ -420,7 +420,7 @@ button.swiper-pagination-bullet {
           appearance: none;
 }
 .swiper-pagination-clickable .swiper-pagination-bullet {
-  cursor: pointer;
+  /* cursor: pointer; */
 }
 .swiper-pagination-bullet:only-child {
   display: none !important;
@@ -568,7 +568,7 @@ button.swiper-pagination-bullet {
   top: 0;
 }
 .swiper-scrollbar-cursor-drag {
-  cursor: move;
+  /* cursor: move; */
 }
 .swiper-scrollbar-lock {
   display: none;
@@ -591,7 +591,7 @@ button.swiper-pagination-bullet {
 }
 /* Zoom container styles end */
 .swiper-slide-zoomed {
-  cursor: move;
+  /* cursor: move; */
   touch-action: none;
 }
 /* a11y */

@@ -3,9 +3,57 @@
 body {
     font-size: 16px;
     color: #202020;
+    cursor: url(/img/cursur.png) 24 24, auto;
 }
 
 #fullpage {
     width: 100%;
     height: 100%;
+}
+
+body::selection,
+div::selection,
+p::selection,
+span::selection,
+a::selection,
+h1::selection,
+h2::selection,
+h3::selection,
+h4::selection,
+h5::selection,
+h6::selection,
+ul::selection,
+ol::selection,
+li::selection,
+strong::selection,
+section::selection,
+article::selection {
+    background-color: #9178f4;
+    color: #ffffff;
+}
+
+/* 특정 요소에서 커서 변경 */
+a,
+nav,
+.btn,
+.btn_outline,
+.cursor_p,
+.nav-item,
+.renewal_img,
+.swiper-button {
+    cursor: url(/img/cursur_p.png) 7.5 3, auto;
+}
+
+/* 클릭 시 커서 변경 */
+*:active,
+body:active,
+nav:active,
+a:active,
+.btn:active,
+.btn_outline:active,
+.cursor_p:active,
+.nav-item:active,
+.renewal_img:active,
+.swiper-button:active {
+    cursor: url(/img/cursur_a.png) 20 17, auto;
 }

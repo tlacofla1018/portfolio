@@ -1,26 +1,7 @@
 :root {
     --progress-width: 0%; /* 초기값 설정 */
 }
-body::selection,
-div::selection,
-p::selection,
-span::selection,
-a::selection,
-h1::selection,
-h2::selection,
-h3::selection,
-h4::selection,
-h5::selection,
-h6::selection,
-ul::selection,
-ol::selection,
-li::selection,
-strong::selection,
-section::selection,
-article::selection {
-    background-color: #9178f4;
-    color: #ffffff;
-}
+
 body {
     .fp-tableCell {
         padding-top: 50px;
@@ -105,9 +86,12 @@ body {
             transition: width 0.3s ease;
         }
         h1 {
-            font-size: 1rem;
             font-weight: 500;
             a {
+                margin: 0;
+                padding: 0;
+                font-size: 1rem;
+                line-height: 50px;
                 color: #202020;
             }
         }
@@ -121,6 +105,7 @@ body {
             }
             .nav-link {
                 font-size: 0.875rem;
+                line-height: 50px;
                 color: #202020;
             }
         }
@@ -320,7 +305,6 @@ body {
             padding: 8px 0;
             border: 1px solid #ccc;
             transition: all .2s ease-in-out;
-            cursor: pointer;
             a {
                 color: #4748b1;
             }
@@ -405,6 +389,7 @@ body {
 
     #design {
         .container {
+            position: relative;
             height: 80%;
             .nav.nav-tabs {
                 gap: 12px;
@@ -430,10 +415,10 @@ body {
                         .swiper-wrapper {
                             height: 90%;
                             li {
-                                width: 375px;
-                                height: 622px;
                                 .product_detail_swiper {
                                     width: 100%;
+                                    height: 600px;
+                                    border: solid 1px #ededed;
                                     .swiper-wrapper {
                                         img {
                                             display: block;
@@ -442,6 +427,24 @@ body {
                                     }
                                 }
                             }
+                        }
+                    }
+                    .swiper-button {
+                        &::after {
+                            content: '';
+                            display: block;
+                            width: 20px;
+                            height: 20px;
+                            border-top: solid 1px #202020;
+                            border-right: solid 1px #202020;
+                            transform: rotate(45deg);
+                        }
+                        &.swiper-button-next {
+                            right: -50px;
+                        }
+                        &.swiper-button-prev {
+                            left: -50px;
+                            transform: rotate(185deg);
                         }
                     }
                 }
